@@ -1,7 +1,6 @@
 import torch
-import numpy as np
-from transformers import *
-from tokenizers import *
+from transformers import LineByLineTextDataset, Trainer, TrainingArguments, BertTokenizer, BertForMaskedLM, \
+    DataCollatorForLanguageModeling
 
 # setting device for transformers
 torch.cuda.set_device(1)
@@ -12,14 +11,14 @@ model = BertForMaskedLM.from_pretrained('bert-base-multilingual-cased')
 
 # initialize the training argument
 training_args = TrainingArguments(
-    output_dir='models',          # output directory to where save model checkpoint
-    evaluation_strategy="steps",    # evaluate each `logging_steps` steps
+    output_dir='models',  # output directory to where save model checkpoint
+    evaluation_strategy="steps",  # evaluate each `logging_steps` steps
     overwrite_output_dir=True,
-    num_train_epochs=2,            # number of training epochs, feel free to tweak
-    per_device_train_batch_size=16, # the training batch size, put it as high as your GPU memory fits
+    num_train_epochs=2,  # number of training epochs, feel free to tweak
+    per_device_train_batch_size=16,  # the training batch size, put it as high as your GPU memory fits
     gradient_accumulation_steps=8,  # accumulating the gradients before updating the weights
     per_device_eval_batch_size=64,  # evaluation batch size
-    logging_steps=1000,             # evaluate, log and save model checkpoints every 1000 step
+    logging_steps=1000,  # evaluate, log and save model checkpoints every 1000 step
     save_steps=1000,
     # load_best_model_at_end=True,  # whether to load the best model (in terms of loss) at the end of training
     # save_total_limit=3,           # whether you don't have much space so you let only 3 model weights saved in the disk
@@ -47,4 +46,4 @@ trainer.train()
 
 # Save
 trainer.save_model('models/mBERT_xnli_domain')
-print ('Finished training all... at models/mBERT_xnli_domain')
+print('Finished training all... at models/mBERT_xnli_domain')
