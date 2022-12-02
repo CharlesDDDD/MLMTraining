@@ -43,13 +43,23 @@ training_args = TrainingArguments(
 data_collator = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm=True, mlm_probability=0.15)
 
 # initialize datasets
+dataset = LineByLineTextDataset(
+    tokenizer=tokenizer,
+    file_path='data/xnli-all.txt',
+    block_size=128,
+)
 
 # initialize the trainer and pass everything to it
 trainer = Trainer(
     model=model,
     args=training_args,
     data_collator=data_collator,
-    train_dataset=datasets,
+    train_dataset=dataset,
 )
 
+# training procedure
 trainer.train()
+
+# Save
+trainer.save_model('models/mBERT_xnli_domain')
+print ('Finished training all... at models/mBERT_xnli_domain')
