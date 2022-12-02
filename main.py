@@ -3,6 +3,9 @@ import numpy as np
 from transformers import *
 from tokenizers import *
 
+# setting device for transformers
+torch.cuda.set_device(1)
+print(torch.cuda.current_device())
 
 tokenizer = BertTokenizer.from_pretrained('bert-base-multilingual-cased')
 model = BertForMaskedLM.from_pretrained('bert-base-multilingual-cased')
