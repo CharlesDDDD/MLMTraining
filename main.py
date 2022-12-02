@@ -10,24 +10,6 @@ print(torch.cuda.current_device())
 tokenizer = BertTokenizer.from_pretrained('bert-base-multilingual-cased')
 model = BertForMaskedLM.from_pretrained('bert-base-multilingual-cased')
 
-# Dataset
-text = np.load('data/dev-all.npy', allow_pickle=True)
-print(text.shape)
-text = text.tolist()
-# Compute the maximux length
-maxLen = -1
-for item in text:
-    if len(item) > maxLen:
-        maxLen = len(item)
-
-inputs = tokenizer(text, return_tensors='pt', padding=True, truncation=True)
-print(inputs.keys())
-print(inputs)
-
-# Create Labels for MLM
-inputs['labels'] = inputs.input_ids.detach().clone()
-print(inputs)
-
 # initialize the training argument
 training_args = TrainingArguments(
     output_dir='models',          # output directory to where save model checkpoint
