@@ -15,4 +15,10 @@ for file in listOffiles:
 
 print(text.shape)
 print(text)
-np.save('data/dev-all.npy', text)
+
+# write all the downstream corpus into one file
+file = open("data/xnli-all.txt", "w+")
+for str in text:
+    file.write(str)
+    file.write('\n')
+file.close()
