@@ -3,7 +3,7 @@ import glob
 import numpy as np
 import pandas as pd
 
-listOffiles = glob.glob('data/xnli/*.tsv')
+listOffiles = glob.glob('data/pawsx/*.tsv')
 text = np.array([])
 print(listOffiles)
 for file in listOffiles:
@@ -17,7 +17,7 @@ print(text.shape)
 print(text)
 
 # write all the downstream corpus into one file
-file = open("data/xnli-all.txt", "w+")
+file = open("data/pawsx/pawsx-all.txt", "w+")
 for str in text:
     file.write(str)
     file.write('\n')
