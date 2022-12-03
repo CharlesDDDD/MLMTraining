@@ -29,7 +29,7 @@ data_collator = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm=True, m
 # initialize datasets
 dataset = LineByLineTextDataset(
     tokenizer=tokenizer,
-    file_path='data/xnli/xnli-all.txt',
+    file_path='data/pawsx/pawsx-all.txt',
     block_size=128,
 )
 
@@ -45,5 +45,5 @@ trainer = Trainer(
 trainer.train()
 
 # Save
-trainer.save_model('models/mBERT_xnli_domain')
-print('Finished training all... at models/mBERT_xnli_domain')
+trainer.save_model('models/mBERT_pawsx_domain')
+print('Finished training all... at models/mBERT_pawsx_domain')
