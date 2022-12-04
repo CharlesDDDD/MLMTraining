@@ -1,13 +1,13 @@
 import torch
-from transformers import LineByLineTextDataset, Trainer, TrainingArguments, BertTokenizer, BertForMaskedLM, \
+from transformers import LineByLineTextDataset, Trainer, TrainingArguments, AutoTokenizer, AutoModelForMaskedLM, \
     DataCollatorForLanguageModeling
 
 # setting device for transformers
 torch.cuda.set_device(1)
 print(torch.cuda.current_device())
 
-tokenizer = BertTokenizer.from_pretrained('xlm-roberta-base')
-model = BertForMaskedLM.from_pretrained('xlm-roberta-base')
+tokenizer = AutoTokenizer.from_pretrained('xlm-roberta-base')
+model = AutoModelForMaskedLM.from_pretrained('xlm-roberta-base')
 
 # initialize the training argument
 training_args = TrainingArguments(
