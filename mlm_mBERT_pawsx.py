@@ -45,5 +45,6 @@ trainer = Trainer(
 trainer.train()
 
 # Save
-trainer.save_model('models/mBERT_pawsx_domain')
-print('Finished training all... at models/mBERT_pawsx_domain')
+trainer.save_model('./models/bert_pawsx')
+tokenizer.save_pretrained('./models/bert_pawsx')
+print('Finished training all... at ./models/bert_xnli')
