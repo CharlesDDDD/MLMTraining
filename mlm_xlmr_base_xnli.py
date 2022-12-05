@@ -3,7 +3,7 @@ from transformers import LineByLineTextDataset, Trainer, TrainingArguments, Auto
     DataCollatorForLanguageModeling
 
 # setting device for transformers
-torch.cuda.set_device(0)
+torch.cuda.set_device(1)
 print(torch.cuda.current_device())
 
 tokenizer = AutoTokenizer.from_pretrained('xlm-roberta-base')
